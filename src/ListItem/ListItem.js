@@ -10,9 +10,8 @@ export default class ListItem extends Component {
     }
 
     render() {
-        //console.log(this.props.item.name)
         return (
-            <li key={this.props.key} className="feature__item">
+            <li className="feature__item">
                 <div className={this.props.divClassName}
                     onClick={(feature, newValue) => this.updateFeature(feature, newValue)}>
                     {this.props.item.name}
