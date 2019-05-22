@@ -16,10 +16,12 @@ export default class TechSpecs extends Component {
                     const featureClass = 'feature__option ' + selectedClass;
 
                     return <ListItem 
+                        feature={key}
                         item={item}
-                        key={index.toString()} 
+                        key={index} 
+                        selected={this.props.selected}
                         divClassName={featureClass} 
-                        handleUpdate={this.props.updateFeature}
+                        handleUpdate={this.props.handleUpdate}
                         />
                 });
 

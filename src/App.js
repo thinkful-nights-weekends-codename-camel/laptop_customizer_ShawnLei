@@ -32,7 +32,11 @@ export default class App extends Component {
 
   // this is the update state function
   updateFeature(feature, newValue) {
-    const selected = Object.assign({}, this.state.selected);
+    console.log('feature');
+    console.log(feature);
+    console.log('newValue');
+    console.log(newValue);          // this.state.selected (this not recognized)
+    const selected = Object.assign({}, this.props.selected);
     selected[feature] = newValue;
     this.setState({
       selected
