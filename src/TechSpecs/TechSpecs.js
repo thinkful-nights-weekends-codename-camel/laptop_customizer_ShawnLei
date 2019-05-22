@@ -20,7 +20,7 @@ export default class TechSpecs extends Component {
                         item={item}
                         key={index} 
                         divClassName={featureClass} 
-                        handleUpdate={this.props.updateFeature} 
+                        handleUpdate={this.props.updateFeature}
                         />
                 });
 
