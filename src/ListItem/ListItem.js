@@ -1,0 +1,25 @@
+import React, { Component } from 'react';
+import './ListItem.css';
+
+export default class ListItem extends Component {
+    static defaultProps = {
+        index: 0,
+        feature: 0,
+        value: 0,
+        item: 0,
+    }
+
+    render() {
+        //console.log(this.props.item.name)
+        return (
+            <li key={this.props.key} className="feature__item">
+                <div className={this.props.divClassName}
+                    onClick={(feature, newValue) => this.updateFeature(feature, newValue)}>
+                    {this.props.item.name}
+                    ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+                        .format(this.props.item.cost)})
+                </div>
+            </li>
+        );
+    }
+}

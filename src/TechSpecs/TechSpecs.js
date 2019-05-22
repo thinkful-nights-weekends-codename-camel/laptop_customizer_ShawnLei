@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import './TechSpecs.css';
+import ListItem from '../ListItem/ListItem';
 
 export default class TechSpecs extends Component {
     static defaultProps = {
-        features: []
+        features: [],
+        selected: {}
     }
 
     render() {
         const features = Object.keys(this.props.features)
             .map(key => {
                 const options = this.props.features[key].map((item, index) => {
-                    const selectedClass = item.name === this.state.selected[key].name ? 'feature__selected' : '';
+                    const selectedClass = item.name === this.props.selected[key].name ? 'feature__selected' : '';
                     const featureClass = 'feature__option ' + selectedClass;
-                    return <li key={index} className="feature__item">
-                        <div className={featureClass}
-                            onClick={e => this.updateFeature(key, item)}>
-                            {item.name}
-                            ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-                                .format(item.cost)})
-                        </div>
-                    </li>
+
+                    console.log(featureClass);
+                    return <ListItem 
+                        item={item}
+                        key={index} 
+                        divClassName={featureClass} 
+                        handleUpdate={this.props.updateFeature} 
+                        />
                 });
 
                 return <div className="feature" key={key}>

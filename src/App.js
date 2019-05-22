@@ -15,6 +15,8 @@ export default class App extends Component {
         "Operating System": {
             name: 'Ubuntu Linux 16.04',
             cost: 200
+            // name: 'Bodhi Linux',
+            // cost: 300
           },
         "Video Card":{
             name: 'Toyota Corolla 1.5v',
@@ -28,7 +30,7 @@ export default class App extends Component {
     }
   }
 
-  // this is the state function
+  // this is the update state function
   updateFeature(feature, newValue) {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
@@ -46,8 +48,14 @@ export default class App extends Component {
           <h5>Customize your laptop</h5>  
         </header>      
         <main>
-          <TechSpecs />
-          <PriceSummary />
+          <TechSpecs 
+            features={this.props.features}
+            selected={this.state.selected} 
+            handleUpdate={this.updateFeature} 
+          />
+          <PriceSummary
+            selected={this.state.selected}  
+          />
         </main>
       </div>
     );
