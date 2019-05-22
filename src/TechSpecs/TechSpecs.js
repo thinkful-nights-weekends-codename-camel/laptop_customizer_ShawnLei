@@ -6,7 +6,7 @@ export default class TechSpecs extends Component {
         features: []
     }
 
-      render() {
+    render() {
         const features = Object.keys(this.props.features)
             .map(key => {
                 const options = this.props.features[key].map((item, index) => {
