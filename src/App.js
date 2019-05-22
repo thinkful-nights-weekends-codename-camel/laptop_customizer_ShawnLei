@@ -13,10 +13,8 @@ export default class App extends Component {
             cost: 700
           },
         "Operating System": {
-            name: 'Ubuntu Linux 16.04',
-            cost: 200
-            // name: 'Bodhi Linux',
-            // cost: 300
+            name: 'Bodhi Linux',
+            cost: 300
           },
         "Video Card":{
             name: 'Toyota Corolla 1.5v',
@@ -30,18 +28,41 @@ export default class App extends Component {
     }
   }
 
+
+  // The previous version of this function, forked from
+  // its repo on thinkful github. This worked fine when
+  // the entire App.js was a single component. 
   // this is the update state function
-  updateFeature(feature, newValue) {
-    console.log('feature');
-    console.log(feature);
-    console.log('newValue');
-    console.log(newValue);          // this.state.selected (this not recognized)
-    const selected = Object.assign({}, this.props.selected);
+  // updateFeature(feature, newValue) {
+  //   const selected = Object.assign({}, this.state.selected);
+  //   selected[feature] = newValue;
+  //   this.setState({
+  //     selected
+  //   });
+  // }
+  // !!!
+  // We can't use this.state.selected in the above func.
+  // The app thinks we want to get the state of ListItem,
+  // the nested component that updateFeature bubbles up
+  // from.
+  // 
+  // What we need is the state that lives in App.js. To
+  // get that, we just give updateFeature a param named
+  // selectedState. Then we pass this.state.selected to
+  // the updateFeature function as selectedState in the
+  // TechSpecs props on line 81. This shit is convoluted
+  // and might not be the best practice, but it works.
+  // 
+  // this is the update state function
+  updateFeature(feature, newValue, selectedState) {
+    const selected = Object.assign({}, selectedState);
     selected[feature] = newValue;
     this.setState({
       selected
     });
   }
+
+
 
   render() {
     return (
@@ -49,20 +70,18 @@ export default class App extends Component {
         <header>
           <h1>ELF Computing</h1>
           <h3>Laptops</h3>
-          <h5>Customize your laptop</h5>  
+          <h5>Customize your laptop</h5>
         </header>      
         <main>
           <TechSpecs 
             features={this.props.features}
             selected={this.state.selected} 
-            handleUpdate={this.updateFeature} 
+            handleUpdate={(feat, val)=>this.updateFeature(feat, val, this.state.selected)}
+            // handleUpdate={this.updateFeature} // OLD VERSION (does not work)
           />
-          <PriceSummary
-            selected={this.state.selected}  
-          />
+          <PriceSummary selected={this.state.selected} />
         </main>
       </div>
     );
   }
 }
-
