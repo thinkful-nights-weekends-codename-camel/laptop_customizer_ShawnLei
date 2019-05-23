@@ -28,7 +28,6 @@ export default class App extends Component {
     }
   }
 
-
   // The previous version of this function, forked from
   // its repo on thinkful github. This worked fine when
   // the entire App.js was a single component. 
@@ -41,7 +40,7 @@ export default class App extends Component {
   //   });
   // }
   // !!!
-  // We can't use this.state.selected in the above func.
+  // We can't use this.state.selected in the above function
   // The app thinks we want to get the state of ListItem,
   // the nested component that updateFeature bubbles up
   // from.
@@ -50,7 +49,7 @@ export default class App extends Component {
   // get that, we just give updateFeature a param named
   // selectedState. Then we pass this.state.selected to
   // the updateFeature function as selectedState in the
-  // TechSpecs props on line 81. This shit is convoluted
+  // TechSpecs props on line 81. This stuff is convoluted
   // and might not be the best practice, but it works.
   // 
   // this is the update state function
@@ -61,8 +60,6 @@ export default class App extends Component {
       selected
     });
   }
-
-
 
   render() {
     return (
